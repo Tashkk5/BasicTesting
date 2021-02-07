@@ -1,0 +1,78 @@
+<div>
+  <h5><span class="badge badge-info"> Almost all the mentioned features are completed in the test like Pagination,
+      sorting, search, I have used basic level of Sass but there was not single need of Redux but I have used it and I
+      know the details of Store, Actions and Reducer functions </span></h5>
+</div>
+
+<div>
+  <div class="container text-center">
+    <br>
+    <h3><span class="badge badge-secondary">Books </span></h3>
+    <br>
+  </div>
+
+
+  <div class="container">
+
+    <div class="input-group mb-3 ">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Items per page</span>
+      </div>
+      <span class=" w-25">
+        <select (change)="applyPagination($event)" class=" form-control w-25">
+          <option [value]="5"> 5 </option>
+          <option [value]="10"> 10 </option>
+          <option [value]="15"> 15 </option>
+          <option [value]="20"> 20 </option>
+        </select>
+      </span>
+
+      <span class=" w-50 float-right">
+        <input class=" form-control float-right w-50" placeholder="Search" (keyup)="searchBook($event)">
+      </span>
+    </div>
+
+    <table class=" table">
+      <thead class=" bg-secondary text-light">
+        <tr>
+          <th>
+            <i-bs name="arrow-down-up" (click)="sortTableByColumn('Title')"></i-bs> Title
+          </th>
+          <th>
+            <i-bs name="arrow-down-up" (click)="sortTableByColumn('Publisher')"></i-bs> Publisher
+          </th>
+          <th>
+            <i-bs name="arrow-down-up" (click)="sortTableByColumn('PageCount')"></i-bs> PageCount
+          </th>
+          <th>
+            <i-bs name="arrow-down-up" (click)="sortTableByColumn('Description')"></i-bs> Description
+          </th>
+          <th> InfoLink </th>
+          <th> BookLink </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of BooksList.slice(LowerIndex,UpperIndex)">
+          <td> {{book.Title?book.Title:''}} <b>{{book.Title?'':'Unavailable'}} </b> </td>
+          <td> {{book.Title?book.Publisher:''}} <b>{{book.Publisher?'':'Unavailable'}} </b> </td>
+          <td> {{book.Title?book.PageCount:''}} <b>{{book.PageCount?'':'Unavailable'}} </b> </td>
+          <td> {{book.Description?book.Description.slice(0,20)+'....':''}} <b>{{book.Description?'':'Unavailable'}} </b>
+          </td>
+          <td> <button class="btn btn-info" (click)="redirectUrl(book.InfoLink)"> Info </button> </td>
+          <td> <button class="btn btn-primary" (click)='openDetails(book)'> Details </button> </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <label>Total Books: {{ BooksList.length }}</label>
+
+    <nav aria-label="Page navigation example" class=" float-right">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" (click)="loadPreviousPage()">Previous</a></li>
+        <li *ngFor="let page of Pages" class="page-item"> <a class="page-link" (click)="loadSpecificPage(page)">
+            {{ page != CurrentPage? page: '' }} <b>{{ page == CurrentPage? page: '' }}</b></a> </li>
+        <li class="page-item"><a class="page-link" (click)="loadNextPage()">Next</a></li>
+      </ul>
+    </nav>
+
+  </div>

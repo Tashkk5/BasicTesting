@@ -1,0 +1,26 @@
+<div class="container text-center">
+  <br>
+  <h3><span class="badge badge-secondary">Book Details</span></h3>
+  <br>
+</div>
+
+<div class="container">
+
+  <h5>Publisher</h5>
+  <p> {{DetailObject.volumeInfo.publisher?DetailObject.volumeInfo.publisher:'unavilable'}}</p>
+
+  <hr>
+
+  <h5>Publish Date</h5>
+  <p> {{DetailObject.volumeInfo.publishedDate?DetailObject.volumeInfo.publishedDate:'unavilable'}}</p>
+
+  <hr>
+
+  <h5>Print Type</h5>
+  <p> {{DetailObject.volumeInfo.printType?DetailObject.volumeInfo.printType:'unavilable'}}</p>
+
+  <hr>
+
+  <h5>Description</h5>
+  <div [innerHTML]="DetailObject.volumeInfo.description?DetailObject.volumeInfo.description:'unavilable'"></div>
+</div>
